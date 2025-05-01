@@ -1,1 +1,1 @@
-default_app_config = 'oc_lettings_site.apps.OcLettingsSiteConfig'
+default_app_config = 'oc_lettings_site.apps.OCLettingsSiteConfig'
