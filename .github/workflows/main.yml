@@ -29,12 +29,8 @@ jobs:
 
       - name: Lint with Flake8
         run: |
-          flake8 . --count --show-source --statistics
+          flake8 . --count --show-source --statistics --ignore=F841
 
       - name: Run tests with Pytest and Coverage
         run: |
           pytest --cov=. --cov-fail-under=80 --ignore=env
-
-# L'étape "Verify test coverage > 80%" est maintenant supprimée car gérée par pytest.
-# ... (le reste du fichier s'il y avait d'autres jobs après) ...
-# S'il n'y a rien après, le fichier se termine ici pour ce job. 

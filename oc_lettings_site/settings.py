@@ -23,16 +23,16 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 sentry_sdk.init(
-    dsn = os.getenv('SENTRY_DSN'),
-    integrations = [
+    dsn=os.getenv('SENTRY_DSN'),
+    integrations=[
         DjangoIntegration(),
         LoggingIntegration(
             level=logging.INFO,
             event_level=logging.ERROR
         )
     ],
-    traces_sample_rate = 1.0,
-    send_default_pii = True
+    traces_sample_rate=1.0,
+    send_default_pii=True
 )
 
 
