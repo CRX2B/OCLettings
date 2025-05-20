@@ -27,9 +27,15 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Create .env file for CI
+        run: |
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" > .env
+          echo "SENTRY_DSN=${{ secrets.SENTRY_DSN }}" >> .env # Si vous voulez tester l'intégration Sentry
+          echo "DJANGO_SETTINGS_MODULE=oc_lettings_site.settings" >> .env
+
       - name: Lint with Flake8
         run: |
-          flake8 . --count --show-source --statistics --ignore=F841
+          flake8 . --count --show-source --statistics
 
       - name: Run tests with Pytest and Coverage
         run: |
