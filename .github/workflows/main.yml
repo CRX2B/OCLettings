@@ -1,0 +1,40 @@
+name: Django CI - Build and Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-and-test:
+    name: Build, Lint and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Lint with Flake8
+        run: |
+          flake8 . --count --show-source --statistics
+
+      - name: Run tests with Pytest and Coverage
+        run: |
+          pytest --cov=. --cov-fail-under=80 --ignore=env
+
+# L'étape "Verify test coverage > 80%" est maintenant supprimée car gérée par pytest.
+# ... (le reste du fichier s'il y avait d'autres jobs après) ...
+# S'il n'y a rien après, le fichier se termine ici pour ce job. 
