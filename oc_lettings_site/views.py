@@ -20,7 +20,7 @@ def index(request):
     Returns:
         HttpResponse: La réponse HTTP rendant le template 'index.html'.
     """
-    logger.info(f"Page non trouvée déclenchée pour le chemin: {request.path}")
+    logger.info("Accès à la page d'accueil.")
     return render(request, 'index.html')
 
 

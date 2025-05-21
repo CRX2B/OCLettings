@@ -1,0 +1,21 @@
+.git
+.gitignore
+.vscode/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+.env
+.venv/
+venv/
+
+# Fichiers spécifiques au projet que vous ne voulez pas dans l'image
+.pytest_cache/
+.coverage
+htmlcov/
+docs/
+*.log
+
+# GitHub Actions workflow files
+.github/ 
