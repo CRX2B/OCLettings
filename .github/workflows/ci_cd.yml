@@ -33,6 +33,10 @@ jobs:
           echo "SENTRY_DSN=${{ secrets.SENTRY_DSN }}" >> .env
           echo "DJANGO_SETTINGS_MODULE=oc_lettings_site.settings" >> .env
 
+      - name: Collect Static Files
+        run: |
+          python manage.py collectstatic --noinput
+
       - name: Lint with Flake8
         run: |
           flake8 . --count --show-source --statistics

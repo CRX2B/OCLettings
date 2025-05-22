@@ -1,4 +1,4 @@
-import os
+import os, sys
 import sentry_sdk
 import logging
 from sentry_sdk.integrations.django import DjangoIntegration
@@ -39,6 +39,7 @@ sentry_sdk.init(
 # Application definition
 
 INSTALLED_APPS = [
+    'whitenoise.runserver_nostatic',
     'oc_lettings_site.apps.OCLettingsSiteConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -52,13 +53,13 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'oc_lettings_site.urls'
@@ -129,12 +130,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
+STORAGES = {
+            "staticfiles": {
+                "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+            },
+        }
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "static", ]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+#if 'test' in sys.argv:
+    #STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+    
 # Logging Configuration
 LOGGING = {
     'version': 1,
