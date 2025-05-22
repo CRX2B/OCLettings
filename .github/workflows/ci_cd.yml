@@ -70,5 +70,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/oc-lettings:latest
-                ${{ secrets.DOCKERHUB_USERNAME }}/oc-lettings:${{ github.sha }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/oc-lettings:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/oc-lettings:${{ github.sha }}
