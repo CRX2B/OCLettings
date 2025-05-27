@@ -1,3 +1,4 @@
 sphinx
 sphinx-rtd-theme
-Django==3.0 
+Django==3.0
+sentry-sdk 
