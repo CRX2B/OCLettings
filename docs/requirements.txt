@@ -2,4 +2,5 @@ sphinx
 sphinx-rtd-theme
 Django==3.0
 sentry-sdk
-python-dotenv 
+python-dotenv
+whitenoise 
