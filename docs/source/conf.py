@@ -5,6 +5,9 @@ import django
 # Configuration file for the Sphinx documentation builder.
 sys.path.insert(0, os.path.abspath('../../'))
 
+# Désactiver Sentry explicitement pour la génération de la documentation
+os.environ["SENTRY_DSN"] = ""
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
 django.setup()
 
