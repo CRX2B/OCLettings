@@ -1,0 +1,171 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="fr" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Déploiement et Gestion de l’Application &mdash; Documentation Orange County Lettings 1.0</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=7a28dfa3"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/translations.js?v=e6b791cb"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="prev" title="Guide d’Utilisation" href="guide_utilisation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Orange County Lettings
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Rechercher docs" aria-label="Rechercher docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table des matières:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="description_projet.html">Description du Projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation du Projet</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide_demarrage.html">Guide de Démarrage Rapide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technologies.html">Technologies Utilisées</a></li>
+<li class="toctree-l1"><a class="reference internal" href="structure_base_donnees.html">Structure de la Base de Données et Modèles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces_programmation.html">Interfaces de Programmation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide_utilisation.html">Guide d’Utilisation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Déploiement et Gestion de l’Application</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#plateforme-de-deploiement">Plateforme de Déploiement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#processus-de-deploiement-initial-et-mises-a-jour">Processus de Déploiement Initial et Mises à Jour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gestion-des-variables-d-environnement">Gestion des Variables d’Environnement</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mises-a-jour-de-l-application">Mises à Jour de l’Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#surveillance-et-logs">Surveillance et Logs</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Orange County Lettings</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Déploiement et Gestion de l’Application</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/deploiement_gestion.rst.txt" rel="nofollow"> Afficher la source de la page</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deploiement-et-gestion-de-l-application">
+<h1>Déploiement et Gestion de l’Application<a class="headerlink" href="#deploiement-et-gestion-de-l-application" title="Lien vers cette rubrique"></a></h1>
+<p>Cette section décrit les procédures pour le déploiement et la gestion continue de l’application Orange County Lettings.</p>
+<section id="plateforme-de-deploiement">
+<h2>Plateforme de Déploiement<a class="headerlink" href="#plateforme-de-deploiement" title="Lien vers cette rubrique"></a></h2>
+<p>L’application est conçue pour être déployée en utilisant <strong>Docker</strong> et est actuellement hébergée sur <strong>Render</strong>.</p>
+<ul class="simple">
+<li><p><strong>Docker :</strong> L’application est conteneurisée à l’aide d’un <cite>Dockerfile</cite> qui définit l’environnement d’exécution, copie le code de l’application, installe les dépendances et spécifie la commande pour démarrer le serveur Gunicorn.</p></li>
+<li><p><strong>Render :</strong> Cette plateforme Cloud est utilisée pour construire l’image Docker à partir du dépôt GitHub et pour exécuter le conteneur. Render gère également la mise à l’échelle, les certificats SSL et d’autres aspects de l’infrastructure.</p></li>
+</ul>
+</section>
+<section id="processus-de-deploiement-initial-et-mises-a-jour">
+<h2>Processus de Déploiement Initial et Mises à Jour<a class="headerlink" href="#processus-de-deploiement-initial-et-mises-a-jour" title="Lien vers cette rubrique"></a></h2>
+<p>Le déploiement et les mises à jour sont largement automatisés grâce à l’intégration entre GitHub et Render, en s’appuyant sur le pipeline CI/CD configuré avec GitHub Actions.</p>
+<ol class="arabic simple">
+<li><p><strong>Déclenchement du déploiement :</strong>
+*   Un <cite>push</cite> sur la branche <cite>master</cite> du dépôt GitHub déclenche le workflow GitHub Actions.
+*   Le workflow exécute les tests, l’analyse de code, puis construit et publie l’image Docker sur Docker Hub.
+*   Render est configuré pour surveiller les nouvelles images sur Docker Hub (ou directement le dépôt GitHub) et déploie automatiquement la dernière version de l’image.</p></li>
+<li><p><strong>Commandes exécutées pendant le déploiement (par Render via le Dockerfile ou des commandes de démarrage) :</strong>
+*   <cite>python manage.py collectstatic –noinput</cite> : Collecte tous les fichiers statiques (CSS, JS, images) dans un répertoire unique pour être servis en production (généralement par WhiteNoise).
+*   <cite>python manage.py migrate</cite> : Applique les migrations de base de données pour s’assurer que le schéma de la base de données est à jour avec les modèles Django.
+*   <cite>gunicorn oc_lettings_site.wsgi:application –bind 0.0.0.0:$PORT</cite> : Lance le serveur d’application WSGI Gunicorn, qui écoute sur le port fourni par Render.</p></li>
+</ol>
+</section>
+<section id="gestion-des-variables-d-environnement">
+<h2>Gestion des Variables d’Environnement<a class="headerlink" href="#gestion-des-variables-d-environnement" title="Lien vers cette rubrique"></a></h2>
+<p>Les configurations sensibles ou spécifiques à l’environnement (comme <cite>SECRET_KEY</cite>, <cite>SENTRY_DSN</cite>, <cite>DEBUG</cite>, <cite>ALLOWED_HOSTS</cite>) sont gérées comme des <strong>variables d’environnement</strong> directement dans l’interface d’administration de Render pour le service concerné.</p>
+<ul class="simple">
+<li><p>Elles ne sont <strong>pas</strong> stockées dans le code source (à l’exception des valeurs par défaut pour le développement local).</p></li>
+<li><p>Render injecte ces variables dans l’environnement du conteneur au moment de l’exécution.</p></li>
+</ul>
+</section>
+<section id="mises-a-jour-de-l-application">
+<h2>Mises à Jour de l’Application<a class="headerlink" href="#mises-a-jour-de-l-application" title="Lien vers cette rubrique"></a></h2>
+<p>Pour mettre à jour l’application en production :</p>
+<ol class="arabic simple">
+<li><p>Effectuez les modifications de code souhaitées sur une branche de développement.</p></li>
+<li><p>Testez les modifications localement.</p></li>
+<li><p>Fusionnez (mergez) la branche de développement dans la branche <cite>master</cite>.</p></li>
+<li><p>Poussez (push) la branche <cite>master</cite> sur GitHub.</p></li>
+<li><p>Le pipeline CI/CD s’exécute, et si tout réussit, Render déploie automatiquement la nouvelle version.</p></li>
+</ol>
+</section>
+<section id="surveillance-et-logs">
+<h2>Surveillance et Logs<a class="headerlink" href="#surveillance-et-logs" title="Lien vers cette rubrique"></a></h2>
+<ul class="simple">
+<li><p><strong>Sentry :</strong> Les erreurs en production sont rapportées à Sentry, permettant un suivi et un diagnostic rapides.</p></li>
+<li><p><strong>Render :</strong> La plateforme Render fournit des outils pour visualiser les logs de l’application en temps réel, ce qui est utile pour le débogage et la surveillance du comportement de l’application.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Pied de page">
+        <a href="guide_utilisation.html" class="btn btn-neutral float-left" title="Guide d’Utilisation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Précédent</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Droits d'auteur 2025, Thomas Jeanne.</p>
+  </div>
+
+  Compilé avec <a href="https://www.sphinx-doc.org/">Sphinx</a> en utilisant un
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">thème</a>
+    fourni par <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
