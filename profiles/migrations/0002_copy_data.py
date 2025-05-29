@@ -18,5 +18,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        # migrations.RunPython(copy_profiles_data), # Commenté pour éviter LookupError lors des tests
+        migrations.RunPython(copy_profiles_data),
     ]
