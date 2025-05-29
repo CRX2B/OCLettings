@@ -1,77 +1,98 @@
-## Résumé
+# Orange County Lettings
 
-Site web d'Orange County Lettings
+Site web de location immobilière pour Orange County.
 
-## Développement local
+## Documentation Complète
+
+Pour une documentation détaillée du projet, incluant l'architecture, le guide d'installation, les technologies utilisées, et plus encore, veuillez consulter notre documentation sur Read the Docs :
+[**Documentation Orange County Lettings sur Read the Docs**](https://oclettings-13.readthedocs.io/fr/latest/)
+
+## Aperçu
+
+Le site web permet de consulter des locations (`lettings`) et des profils d'utilisateurs (`profiles`). Il est construit avec Django et utilise une base de données SQLite pour le développement.
+
+## Développement Local
 
 ### Prérequis
 
-- Compte GitHub avec accès en lecture à ce repository
-- Git CLI
-- SQLite3 CLI
-- Interpréteur Python, version 3.6 ou supérieure
+*   Git CLI
+*   Python (version 3.9 ou supérieure recommandée, vérifiez `runtime.txt` ou la configuration de déploiement pour la version exacte utilisée en production)
+*   SQLite3 CLI (optionnel, pour inspecter la base de données directement)
 
-Dans le reste de la documentation sur le développement local, il est supposé que la commande `python` de votre OS shell exécute l'interpréteur Python ci-dessus (à moins qu'un environnement virtuel ne soit activé).
+### Instructions d'Installation et de Lancement
 
-### macOS / Linux
+1.  **Cloner le dépôt :**
+    ```bash
+    git clone https://github.com/CRX2B/OCLettings
+    cd Python-OC-Lettings-FR
+    ```
 
-#### Cloner le repository
+2.  **Créer et activer un environnement virtuel :**
+    *   Sur macOS / Linux :
+        ```bash
+        python3 -m venv venv
+        source venv/bin/activate
+        ```
+    *   Sur Windows (PowerShell) :
+        ```bash
+        python -m venv venv
+        .\venv\Scripts\Activate.ps1
+        ```
 
-- `cd /path/to/put/project/in`
-- `git clone https://github.com/OpenClassrooms-Student-Center/Python-OC-Lettings-FR.git`
+3.  **Installer les dépendances :**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-#### Créer l'environnement virtuel
+4.  **Appliquer les migrations (si nécessaire) :**
+    ```bash
+    python manage.py migrate
+    ```
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `python -m venv venv`
-- `apt-get install python3-venv` (Si l'étape précédente comporte des erreurs avec un paquet non trouvé sur Ubuntu)
-- Activer l'environnement `source venv/bin/activate`
-- Confirmer que la commande `python` exécute l'interpréteur Python dans l'environnement virtuel
-`which python`
-- Confirmer que la version de l'interpréteur Python est la version 3.6 ou supérieure `python --version`
-- Confirmer que la commande `pip` exécute l'exécutable pip dans l'environnement virtuel, `which pip`
-- Pour désactiver l'environnement, `deactivate`
+5.  **Lancer le serveur de développement :**
+    ```bash
+    python manage.py runserver
+    ```
+    Le site sera accessible à l'adresse `http://localhost:8000`.
 
-#### Exécuter le site
+### Outils de Qualité
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `pip install --requirement requirements.txt`
-- `python manage.py runserver`
-- Aller sur `http://localhost:8000` dans un navigateur.
-- Confirmer que le site fonctionne et qu'il est possible de naviguer (vous devriez voir plusieurs profils et locations).
+*   **Linting (avec Flake8) :**
+    ```bash
+    flake8 .
+    ```
+*   **Tests Unitaires (avec Pytest) :**
+    ```bash
+    pytest
+    ```
+    Pour voir la couverture de code :
+    ```bash
+    pytest --cov=.
+    ```
 
-#### Linting
+### Base de Données
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `flake8`
+Le projet utilise SQLite en développement (`oc-lettings-site.sqlite3`). Vous pouvez l'inspecter avec des outils comme `sqlite3` ou DB Browser for SQLite.
 
-#### Tests unitaires
+### Panel d'Administration Django
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- `source venv/bin/activate`
-- `pytest`
+*   Accessible via `/admin/` sur le serveur de développement.
+*   Créez un superutilisateur si vous n'en avez pas :
+    ```bash
+    python manage.py createsuperuser
+    ```
 
-#### Base de données
+## Déploiement
 
-- `cd /path/to/Python-OC-Lettings-FR`
-- Ouvrir une session shell `sqlite3`
-- Se connecter à la base de données `.open oc-lettings-site.sqlite3`
-- Afficher les tables dans la base de données `.tables`
-- Afficher les colonnes dans le tableau des profils, `pragma table_info(Python-OC-Lettings-FR_profile);`
-- Lancer une requête sur la table des profils, `select user_id, favorite_city from
-  Python-OC-Lettings-FR_profile where favorite_city like 'B%';`
-- `.quit` pour quitter
+Le déploiement est géré via une pipeline CI/CD avec GitHub Actions, qui construit une image Docker et la déploie sur Render.com. Consultez le fichier `.github/workflows/ci_cd.yml` pour plus de détails.
 
-#### Panel d'administration
+## Configuration CI/CD (GitHub Actions Secrets)
 
-- Aller sur `http://localhost:8000/admin`
-- Connectez-vous avec l'utilisateur `admin`, mot de passe `Abc1234!`
+Pour que le pipeline CI/CD défini dans `.github/workflows/ci_cd.yml` fonctionne correctement, les secrets suivants doivent être configurés dans les "Secrets and variables" > "Actions" de votre dépôt GitHub :
 
-### Windows
+*   `SECRET_KEY`: Clé secrète Django. Vous pouvez en générer une nouvelle (par exemple avec `python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'`).
+*   `SENTRY_DSN`: (Optionnel) Le DSN de votre projet Sentry pour le suivi des erreurs. Si vous n'utilisez pas Sentry, vous pouvez mettre une valeur vide ou omettre certaines configurations liées dans le workflow.
+*   `DOCKERHUB_USERNAME`: Votre nom d'utilisateur Docker Hub, utilisé pour pousser l'image Docker.
+*   `DOCKERHUB_TOKEN`: Un token d'accès Docker Hub avec les permissions nécessaires pour pousser des images. Il est recommandé d'utiliser un token plutôt que votre mot de passe direct.
+*   `RENDER_WEBHOOK`: L'URL du "Deploy Hook" fournie par Render pour votre service, utilisée pour déclencher les redéploiements.
 
-Utilisation de PowerShell, comme ci-dessus sauf :
-
-- Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
-- Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
