@@ -1,8 +1,10 @@
+"""Point d'entrée principal pour les commandes d'administration de Django."""
 import os
 import sys
 
 
 def main():
+    """Exécute les commandes d'administration de Django."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'oc_lettings_site.settings')
     try:
         from django.core.management import execute_from_command_line

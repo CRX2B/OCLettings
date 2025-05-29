@@ -1,3 +1,4 @@
+"""Configuration principale des URL pour le projet oc_lettings_site."""
 from django.contrib import admin
 from django.urls import path, include
 

@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Letting
 
 
-def lettings_index(request):
+def index(request):
     """Affiche la liste de toutes les locations disponibles.
 
     Args:

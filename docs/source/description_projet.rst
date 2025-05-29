@@ -4,7 +4,7 @@ Description du Projet
 Orange County Lettings est une application web développée pour une start-up spécialisée dans la location de biens immobiliers, actuellement en phase d'expansion aux États-Unis. Ce projet global vise à moderniser et fiabiliser l'application existante de l'entreprise.
 
 Contexte et Objectifs Généraux
------------------------------
+------------------------------
 
 L'objectif principal était de faire évoluer l'application "Orange County Lettings" pour répondre aux besoins d'une entreprise en croissance. Cela a impliqué une amélioration significative de la structure du code, de sa maintenabilité, ainsi que la modernisation du processus de déploiement et de suivi.
 

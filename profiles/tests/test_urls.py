@@ -17,7 +17,7 @@ class ProfileURLTest(TestCase):
         """Teste l'inversion et la résolution de l'URL de l'index."""
         url_path = reverse('profiles:index')
         self.assertEqual(url_path, '/profiles/')
-        self.assertEqual(resolve(url_path).func, views.profiles_index)
+        self.assertEqual(resolve(url_path).func, views.index)
 
     def test_profile_url_reverse_resolve(self):
         """Teste l'inversion et la résolution de l'URL d'un profil."""

@@ -26,7 +26,7 @@ class LettingsURLTest(TestCase):
         """Teste l'inversion et la résolution de l'URL de l'index."""
         url_path = reverse('lettings:index')
         self.assertEqual(url_path, '/lettings/')
-        self.assertEqual(resolve(url_path).func, views.lettings_index)
+        self.assertEqual(resolve(url_path).func, views.index)
 
     def test_letting_url_reverse_resolve(self):
         """Teste l'inversion et la résolution de l'URL d'une location."""

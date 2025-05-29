@@ -8,7 +8,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Profile
 
 
-def profiles_index(request):
+def index(request):
     """Affiche la liste de tous les profils utilisateurs.
 
     Args:

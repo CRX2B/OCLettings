@@ -24,7 +24,7 @@ Gère l'affichage des locations.
 
 *   **Détail d'une location :**
     *   **URL :** `/lettings/<int:letting_id>/`
-    *   **Vue :** `lettings.views.letting`
+    *   **Vue :** `lettings.views.letting_detail`
     *   **Description :** Affiche les informations détaillées pour une location spécifique, identifiée par son `letting_id`.
 
 Application Profiles (Profils)
@@ -39,7 +39,7 @@ Gère l'affichage des profils utilisateurs.
 
 *   **Détail d'un profil :**
     *   **URL :** `/profiles/<str:username>/`
-    *   **Vue :** `profiles.views.profile`
+    *   **Vue :** `profiles.views.profile_detail`
     *   **Description :** Affiche les informations détaillées pour un profil utilisateur spécifique, identifié par son `username`.
 
 Interface d'Administration Django

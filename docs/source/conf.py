@@ -22,9 +22,6 @@ copyright = '2025, Thomas Jeanne'
 author = 'Thomas Jeanne'
 release = '1.0'
 
-# Modules to mock (simulate) during Sphinx build
-autodoc_mock_imports = ["sentry_sdk", "dotenv"]
-
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
@@ -44,4 +41,3 @@ language = 'fr'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
 html_theme = 'sphinx_rtd_theme'
-html_static_path = ['_static']
